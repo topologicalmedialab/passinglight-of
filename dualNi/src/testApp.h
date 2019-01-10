@@ -2,6 +2,8 @@
 
 #include "ofMain.h"
 #include "ofxSpout.h"
+#include "ofxGui.h"
+#include "ofxAutoReloadedShader.h"
 
 class testApp : public ofBaseApp
 {
@@ -22,9 +24,16 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
-	ofxSpout::Sender sender;
+	ofxSpout::Sender sender1;
 	ofxSpout::Sender sender2;
 
-	ofFbo fbo;
+	ofFbo fboMix;
+	ofFbo fbo1;
 	ofFbo fbo2;
+
+	ofxAutoReloadedShader shaderMix;
+	
+	ofxPanel gui;
+	ofxVec2Slider translate1, scale1, translate2, scale2;
+	ofxFloatSlider rotate1, rotate2;
 };
