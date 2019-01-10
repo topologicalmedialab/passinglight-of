@@ -36,4 +36,5 @@ public:
 	ofxPanel gui;
 	ofxVec2Slider translate1, scale1, translate2, scale2;
 	ofxFloatSlider rotate1, rotate2;
+	ofxFloatSlider bias1,bias2;
 };

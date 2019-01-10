@@ -1,9 +1,11 @@
 <group>
-	<translate1>153.469, 137.143</translate1>
+	<translate1>153.469, 142.041</translate1>
 	<scale1>1, 1</scale1>
 	<rotate1>0</rotate1>
 	<translate2>122.449, 291.429</translate2>
 	<scale2>1, 1</scale2>
 	<rotate2>176.4</rotate2>
 <group/>
+<bias1>-0.45</bias1>
+	<bias2>-0.43</bias2>
 </group>

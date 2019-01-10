@@ -60,9 +60,12 @@ void testApp::setup()
 	gui.add(translate1.setup("translate1", ofVec2f(160, 120), ofVec2f(0, 0), ofVec2f(320, 480)));
 	gui.add(scale1.setup("scale1", ofVec2f(1, 1), ofVec2f(0, 0), ofVec2f(2, 2)));
 	gui.add(rotate1.setup("rotate1", 0, -180, 180));
+	gui.add(bias1.setup("bias1", 0, -1, 1));
 	gui.add(translate2.setup("translate2", ofVec2f(160, 120 + 240), ofVec2f(0, 0), ofVec2f(320, 480)));
 	gui.add(scale2.setup("scale2", ofVec2f(1, 1), ofVec2f(0, 0), ofVec2f(2, 2)));
 	gui.add(rotate2.setup("rotate2", 0, -180, 180));
+	gui.add(bias2.setup("bias2", 0, -1, 1));
+	gui.loadFromFile("settings.xml");
 }
 
 void testApp::exit()
@@ -112,6 +115,8 @@ void testApp::draw()
 	ofSetColor(255);
 	ofFill();
 	shaderMix.begin();
+	shaderMix.setUniform1f("bias1", bias1);
+	shaderMix.setUniform1f("bias2", bias2);
 	shaderMix.setUniformTexture("depth1", fbo1, 0);
 	shaderMix.setUniformTexture("depth2", fbo2, 1);
 	ofDrawPlane(fboMix.getWidth() * 0.5f, fboMix.getHeight() * 0.5f,

@@ -6,6 +6,9 @@ uniform sampler2DRect tex0; // cmap
 uniform sampler2DRect depth1;
 uniform sampler2DRect depth2;
 
+uniform float bias1;
+uniform float bias2;
+
 in vec2 vTexcoord;
 in vec4 vColor;
 out vec4 fragColor;
@@ -21,11 +24,16 @@ void main() {
   vec2 fragCoord = vTexcoord;
   fragCoord = fragCoord * vec2(320.0, 240.0*2);
 
-  vec4 col1 = texture(depth1, fragCoord);
-  vec4 col2 = texture(depth2, fragCoord);
+  float col1org = texture(depth1, fragCoord).r;
+  float col2org = texture(depth2, fragCoord).r;
+  float col1 = col1org + bias1 * 0.01;
+  float col2 = col2org + bias2 * 0.01;
 
-  float depth = max(col1.r, col2.r) * 10;
+  float depth;
+  depth = max(col1, col2) * 10;
+  //if(col1org == 0 || col2org == 0) depth = max(col1, col2) * 10;
+  //else depth = mix(col1, col2, 0.5) * 10;
   vec3 col = vec3(depth);
-  //col = hsv2rgb(vec3(fract(depth * 10), 1, 1));
+  //col = hsv2rgb(vec3(fract(depth * 5), 1, 1));
   fragColor = vec4(col, 1.0);
 }
